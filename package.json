@@ -1,0 +1,43 @@
+{
+  "name": "react-basic-calendar",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "date-fns": "^1.29.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-custom-media": "6.0.0",
+    "postcss-import": "11.1.0",
+    "postcss-nested": "^3.0.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-router-transition": "^1.2.1",
+    "react-scripts": "^2.0.0-next.b2fd8db8",
+    "react-select": "^1.2.1",
+    "react-transition-group": "^2.3.0"
+  },
+  "scripts": {
+    "//postinstallsource": "//https://github.com/facebook/create-react-app/issues/2133",
+    "postinstall": "sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-import'),require('postcss-cssnext'),require('postcss-nested'),require('postcss-custom-media'),require('postcss-flexbugs-fixes')/g\" node_modules/react-scripts/config/webpack.config.dev.js && sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-import'),require('postcss-cssnext'),require('postcss-nested'),require('postcss-flexbugs-fixes'),require('postcss-custom-media')/g\" node_modules/react-scripts/config/webpack.config.prod.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
+  },
+  "devDependencies": {
+    "react-app-rewire-eslint": "^0.2.3",
+    "react-app-rewired": "^1.5.0"
+  }
+}
