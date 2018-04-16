@@ -14,7 +14,7 @@ class CalendarRouting extends Component {
   render() {
     const currentKey = window.location.pathname.split('/').join('m') || '/';
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <>
           <GlobalHistory />
           <DropDownNavigation />
