@@ -1,0 +1,112 @@
+:root {
+  --color__border: #eee;
+  --color__link-button: #88f;
+  --global-padding--small: 2vw;
+  --global-padding: 1.25rem;
+}
+
+html {
+  box-sizing: border-box;
+  background: #ccc;  
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#root {
+  margin: 3em auto;
+  max-width: 800px;
+}
+
+.calendar {
+  width: 100%;
+  background: white;
+  display: grid;
+  overflow: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  padding: var(--global-padding--small);
+  @media (min-width: 800px){
+    padding: var(--global-padding);
+  }
+  li {
+    list-style-type: none;;
+  }
+  &__title {
+    text-align: center;
+  }
+  &__grid {
+    display: grid;
+    border: 1px solid var(--color__border);
+    grid-template-columns: repeat(7, 1fr);
+    margin: 0;
+    padding: var(--global-padding--small);
+    @media (min-width: 800px){
+      padding: var(--global-padding);
+    }
+  }
+  &__month {
+    border: 1px solid var(--color__border);
+  }
+}
+
+.switch-class {
+  transform-style: preserve-3d;
+  position: relative;
+  > div:not(:first-child) {
+    position: absolute;
+  }
+}
+
+.header {
+  &__item {
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+}
+
+.date {
+  &__list {
+    padding: 0;
+    margin: 0;
+  }
+  &__item {
+    text-align: center;
+    border: 1px solid var(--color__border);
+    padding: var(--global-padding--small);
+    @media (min-width: 800px){
+      padding: var(--global-padding);
+    }
+    &--is-overflow {
+      background: #ddd;
+      color: #888;
+    }
+  }
+}
+
+.dropdown-navigation {
+  display: flex;
+  &__menu {
+    flex: 1 1 50%;
+    padding: var(--global-padding--small);
+    @media (min-width: 800px){
+      padding: var(--global-padding);
+    }
+  }
+}
+
+.sequential-navigation {
+  display: flex;
+  justify-content: space-between;
+  &__button {
+    background: var(--color__link-button);
+    padding: 1em;
+    color: white;
+    text-decoration: none;
+    text-size: 1em;
+    margin: 1em var(--global-padding--small) 0;
+    @media (min-width: 800px){
+      margin: 1em var(--global-padding) 0;
+    }
+  }
+}
