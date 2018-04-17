@@ -15,6 +15,9 @@ class Calendar extends Component {
       months: getAllMonthsOfYear(),
       years: get20yearsEachWay(),
       updateContext: params => {
+        if (!params.month) {
+          params.month = 1;
+        }
         this.setState({
           params: params
         })
