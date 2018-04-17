@@ -12,18 +12,18 @@ import { GlobalHistory } from './utilities/history';
 class CalendarRouting extends Component {
 
   render() {
-    const currentKey = window.location.pathname.split('/').join('m') || '/';
     return (
       <Router basename={process.env.PUBLIC_URL}>
-        <>
-          <GlobalHistory />
-          <DropDownNavigation />
-          <SequentialNavigation />
-          <TransitionSwitch className="switch-class" key={currentKey}  >
-            <Route path="/:year/:month" component={Month} />
-            <Route path="/" component={HomeRedirect} />
-          </TransitionSwitch>
-        </>
+      <>
+        <GlobalHistory />
+        <DropDownNavigation />
+        <SequentialNavigation />
+        <TransitionSwitch className="switch-class" key={window.location}  >
+          <Route exact path="/" component={HomeRedirect} />
+          <Route path="/:year/:month" component={Month} />
+          <Route path="/:year" component={Month} />
+        </TransitionSwitch>
+      </>
       </Router>
     )
   }

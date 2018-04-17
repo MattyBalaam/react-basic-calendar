@@ -55,6 +55,7 @@ html {
   position: relative;
   > div:not(:first-child) {
     position: absolute;
+    top: 0;
   }
 }
 
