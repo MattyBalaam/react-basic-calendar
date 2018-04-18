@@ -6,11 +6,17 @@ import 'react-select/dist/react-select.css';
 class DropDownNavigation extends Component {
 
   setMonth = ({value}) => {
-    this.props.setMonth(value);
+    this.props.dispatch({
+      type: 'SETMONTH',
+      month: value,
+    })
   }
 
   setYear = ({value}) => {
-    this.props.setYear(value);
+    this.props.dispatch({
+      type: 'SETYEAR',
+      year: value,
+    });  
   }
 
   render() {
@@ -38,8 +44,8 @@ class DropDownNavigation extends Component {
   
 export default props => (
   <Context.Consumer>
-    {({setMonth, setYear, months, years, params}) => <DropDownNavigation 
-      {...props} setMonth={setMonth} setYear={setYear} 
+    {({dispatch, months, years, params}) => <DropDownNavigation 
+      {...props} dispatch={dispatch} 
       years={years} months={months} 
       params={params}  />}
   </Context.Consumer>

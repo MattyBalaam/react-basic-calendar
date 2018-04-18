@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import Context from './Context';
+import reducer from './Reducer';
 import Routing from './Routing';
-import {getAllDaysOfWeek, getAllMonthsOfYear, get20yearsEachWay} from './utilities/dates';
 
+import {getAllDaysOfWeek, getAllMonthsOfYear, get20yearsEachWay} from './utilities/dates';
 import getHistory from './utilities/history'; 
 
 class Calendar extends Component {
@@ -14,27 +15,7 @@ class Calendar extends Component {
       days: getAllDaysOfWeek(),
       months: getAllMonthsOfYear(),
       years: get20yearsEachWay(),
-      updateContext: params => {
-        if (!params.month) {
-          params.month = 1;
-        }
-        this.setState({
-          params: params
-        })
-      },
       params : null,
-      setMonth: month => {this.setState({
-        params: {
-          month: parseInt(month),
-          year: this.state.params.year
-        }
-      })},
-      setYear: year => {this.setState({
-        params: {
-          year: parseInt(year),
-          month: this.state.params.month
-        }
-      })}
     };
   }
 
@@ -47,8 +28,14 @@ class Calendar extends Component {
   }
 
   render() {
+    console.log('this.state', this.state);
     return (
-      <Context.Provider value={this.state}>
+      <Context.Provider value={{
+        ...this.state,
+        dispatch: action => {
+          this.setState(state => reducer(state, action));
+        }
+      }}>
         <section className="calendar">
           <Routing/>
         </section>
