@@ -13,12 +13,17 @@ class Month extends Component {
   static getDerivedStateFromProps = (nextProps, prevState) => {
 
     const nextMatchParams = getParamsInt(nextProps.match.params)
+    const updateParams = () => nextProps.dispatch({
+      type: 'UPDATEPARAMS',
+      params: nextMatchParams,
+    });
+
     if (!nextProps.params ) {
-      nextProps.updateContext(nextMatchParams);
+      updateParams();
       return false;
     }
     
-    const nextPropsParams = getParamsInt(nextProps.params)
+    const nextPropsParams = getParamsInt(nextProps.params);
     if (!prevState.params ||
       nextPropsParams.month !== prevState.params.month 
       || nextPropsParams.year !== prevState.params.year)  {
@@ -30,10 +35,12 @@ class Month extends Component {
 
     if (nextMatchParams.month !== prevState.params.month
         || nextMatchParams.year !== prevState.params.year)  {
-      nextProps.updateContext(nextMatchParams);
+      updateParams();
+      return false;
     }
 
     return false;
+
   }
 
   render() {
@@ -89,6 +96,6 @@ CalendarHeader.propTypes = {
 
 export default props => (
   <Context.Consumer>
-    {({updateContext, params, days}) => <Month {...props} updateContext={updateContext} params={params} days={days} />}
+    {({dispatch, params, days}) => <Month {...props} dispatch={dispatch} params={params} days={days} />}
   </Context.Consumer>
 );
