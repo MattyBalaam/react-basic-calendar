@@ -9,9 +9,9 @@ const reducer = (state, action) => {
   case "UPDATEPARAMS":
     return getStateWithNewParams(action.params);
   case "SETMONTH":
-    return getStateWithNewParams({year: state.params.year, month: action.month});
+    return getStateWithNewParams({...state.params, month: action.month});
   case "SETYEAR":
-    return getStateWithNewParams({month: state.params.month, year: action.year});
+    return getStateWithNewParams({...state.params, year: action.year});
   default:
     return state;
   }
