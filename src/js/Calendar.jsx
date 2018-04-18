@@ -28,7 +28,6 @@ class Calendar extends Component {
   }
 
   render() {
-    console.log('this.state', this.state);
     return (
       <Context.Provider value={{
         ...this.state,
