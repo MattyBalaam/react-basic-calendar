@@ -5,41 +5,21 @@ import DateFns from 'date-fns';
 
 import {getDisplayDatesFromParams, getFormattedMonth} from './utilities/dates';
 
-
 class Month extends Component {
 
-  state = {};
+  constructor(props) {
+    super(props)
 
-  static getDerivedStateFromProps = (nextProps, prevState) => {
+    let propsParams = this.props.params;
+    let params = this.props.match.params;
 
-    const nextMatchParams = getParamsInt(nextProps.match.params)
-    const updateParams = () => nextProps.dispatch({
-      type: 'UPDATEPARAMS',
-      params: nextMatchParams,
-    });
-
-    if (!nextProps.params ) {
-      updateParams();
-      return false;
-    }
-    
-    const nextPropsParams = getParamsInt(nextProps.params);
-    if (!prevState.params ||
-      nextPropsParams.month !== prevState.params.month 
-      || nextPropsParams.year !== prevState.params.year)  {
-      return {
-        params: nextPropsParams,
-        dates: getDisplayDatesFromParams(nextPropsParams),
-      } 
+    if (params !== propsParams) {
+      this.props.dispatch({ type: 'UPDATEPARAMS', params })
     }
 
-    if (nextMatchParams.month !== prevState.params.month
-        || nextMatchParams.year !== prevState.params.year)  {
-      updateParams();
-      return false;
-    }
-
-    return false;
+    this.state = {
+      dates: getDisplayDatesFromParams(params),
+    };
 
   }
 
@@ -80,13 +60,6 @@ const CalendarDay = ({date}) => (
     <p>{DateFns.getDate(date.date)} {date.isStart ? 'start' : ''} {date.isEnd ? 'end' : ''}</p>
   </li>
 )
-
-const getParamsInt = ({month,year}) => {
-  return {
-    month: parseInt(month),
-    year: parseInt(year),
-  }
-}
 
 CalendarHeader.propTypes = {
   days: PropTypes.arrayOf(PropTypes.string).isRequired,

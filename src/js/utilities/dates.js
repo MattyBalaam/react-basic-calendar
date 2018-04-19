@@ -50,7 +50,7 @@ const getDisplayDatesFromParams = ({year, month}) => {
 
 const getTodaysDateParams = () => ({
   year: getCurrentYear(),
-  month: getCurrentMonth()
+  month: getCurrentMonth() + 1 //urls are not index
 })
 
 const getCurrentYear = () => {

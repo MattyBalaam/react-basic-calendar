@@ -5,7 +5,14 @@ import reducer from './Reducer';
 import Routing from './Routing';
 
 import {getAllDaysOfWeek, getAllMonthsOfYear, get20yearsEachWay} from './utilities/dates';
-import getHistory from './utilities/history'; 
+import {updateHistory} from './utilities/history'; 
+
+const paramsEqual = (a, b) => {
+  if (a === null) {
+    return false;
+  }
+  return a.month === b.month && a.year === b.year;
+}
 
 class Calendar extends Component {
 
@@ -19,12 +26,12 @@ class Calendar extends Component {
     };
   }
 
-  componentDidUpdate() {
-    this.updateHistory();
-  }
-
-  updateHistory() {
-    getHistory().push(`/${this.state.params.year}/${(this.state.params.month)}`);
+  shouldComponentUpdate(nextProps, nextState) {
+    if (paramsEqual(this.state.params, nextState.params )) {
+      return false;
+    }
+    updateHistory(nextState.params);
+    return true;
   }
 
   render() {
