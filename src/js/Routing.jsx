@@ -30,7 +30,7 @@ class Routing extends Component {
         <DropDownNavigation />
         <SequentialNavigation />
         <TransitionSwitch className="switch-class" key={window.location}  >
-          <Route exact path="/" component={HomeRedirect} />
+          <Route exact path="/" component={HomeRedirectWithContext} />
           <Route path="/:year/:month" component={Month} />
           <Route path="/:year" component={Month} />
         </TransitionSwitch>
@@ -39,17 +39,29 @@ class Routing extends Component {
   }
 } 
 
-const HomeRedirect = props => (
+const HomeRedirectWithContext = props => (
   <Context.Consumer>
-    {({dispatch}) => {
-      const params = getTodaysDateParams();
-      dispatch({ type: 'UPDATEPARAMS', params: params })
-      return (
-        <Redirect {...props} to={`/${params.year}/${params.month}`}/>
-      )
-    }}}
+    {({dispatch}) => <HomeRedirect {...props} dispatch={dispatch} />}
   </Context.Consumer>
 );
+
+
+class HomeRedirect extends Component {
+  constructor(props) {
+    super(props)
+    const params = getTodaysDateParams();
+    this.props.dispatch({ type: 'UPDATEPARAMS', params })
+    this.state = {
+      to: `/${params.year}/${params.month}`,
+    };
+  }
+
+  render(){
+    return (
+      <Redirect {...this.props} to={this.state.to} />
+    )
+  }
+}
 
 
 export default CalendarRouting;
