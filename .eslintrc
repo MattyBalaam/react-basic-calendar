@@ -16,7 +16,7 @@
         "no-var-keyword": true,
         "no-unused-vars": [
             "error", 
-            { "args": "none" }
+            { "args": "after-used" }
         ],
         "one-line": [
             true,
