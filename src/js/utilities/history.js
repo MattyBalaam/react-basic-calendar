@@ -22,7 +22,10 @@ class Spy extends React.Component {
 
 export const GlobalHistory = withRouter(Spy);
 
+export const updateHistory = ({year, month}) => globalHistory.push(`/${year}/${(month)}`);
+
 // export react-router history
 export default function getHistory() {    
   return globalHistory;
 }
+

@@ -18,10 +18,10 @@
   "scripts": {
     "//postinstallsource": "//https://github.com/facebook/create-react-app/issues/2133",
     "postinstall": "sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-import'),require('postcss-cssnext'),require('postcss-nested'),require('postcss-custom-media'),require('postcss-flexbugs-fixes')/g\" node_modules/react-scripts/config/webpack.config.dev.js && sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-import'),require('postcss-cssnext'),require('postcss-nested'),require('postcss-flexbugs-fixes'),require('postcss-custom-media')/g\" node_modules/react-scripts/config/webpack.config.prod.js",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject"
   },
   "browserslist": {
     "development": [

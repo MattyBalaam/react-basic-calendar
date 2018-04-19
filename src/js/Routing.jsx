@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
+import Context from './Context';
 import DropDownNavigation from './DropDownNavigation';
 import SequentialNavigation from './SequentialNavigation';
 import Month from './Month';
@@ -14,6 +15,16 @@ class CalendarRouting extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
+        <Routing/>
+      </Router>
+    )
+  }
+}
+
+class Routing extends Component {
+
+  render () {
+    return (
       <>
         <GlobalHistory />
         <DropDownNavigation />
@@ -24,16 +35,21 @@ class CalendarRouting extends Component {
           <Route path="/:year" component={Month} />
         </TransitionSwitch>
       </>
-      </Router>
     )
   }
-}
+} 
 
-const HomeRedirect = ()=> {
-  const {year, month} = getTodaysDateParams()
-  return (
-    <Redirect to={`/${year}/${parseInt(month+1)}`}/> // urls are not as index
-  )
-}
+const HomeRedirect = props => (
+  <Context.Consumer>
+    {({dispatch}) => {
+      const params = getTodaysDateParams();
+      dispatch({ type: 'UPDATEPARAMS', params: params })
+      return (
+        <Redirect {...props} to={`/${params.year}/${params.month}`}/>
+      )
+    }}}
+  </Context.Consumer>
+);
+
 
 export default CalendarRouting;

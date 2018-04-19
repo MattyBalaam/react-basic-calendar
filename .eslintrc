@@ -15,8 +15,8 @@
         "no-trailing-whitespace": true,
         "no-var-keyword": true,
         "no-unused-vars": [
-            "error", 
-            { "args": "none" }
+            "warn", 
+            { "args": "after-used" }
         ],
         "one-line": [
             true,
