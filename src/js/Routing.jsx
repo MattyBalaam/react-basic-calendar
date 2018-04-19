@@ -26,15 +26,15 @@ class Routing extends Component {
   render () {
     return (
       <>
-      <GlobalHistory />
-      <DropDownNavigation />
-      <SequentialNavigation />
-      <TransitionSwitch className="switch-class" key={window.location}  >
-        <Route exact path="/" component={HomeRedirect} />
-        <Route path="/:year/:month" component={Month} />
-        <Route path="/:year" component={Month} />
-      </TransitionSwitch>
-    </>
+        <GlobalHistory />
+        <DropDownNavigation />
+        <SequentialNavigation />
+        <TransitionSwitch className="switch-class" key={window.location}  >
+          <Route exact path="/" component={HomeRedirect} />
+          <Route path="/:year/:month" component={Month} />
+          <Route path="/:year" component={Month} />
+        </TransitionSwitch>
+      </>
     )
   }
 } 
